@@ -1,10 +1,16 @@
 using JwtProject.API.Context;
 using JwtProject.API.Entities;
+using JwtProject.API.Options;
+using JwtProject.API.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+
+builder.Services.AddScoped<IJwtService, JwtService>();
+
+builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection(nameof(JwtOptions)));
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
