@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using System.Security.Claims;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -45,7 +46,8 @@ builder.Services.AddAuthentication(config =>
         ValidIssuer = jwtOptions.Issuer,
         ValidAudience = jwtOptions.Audience,
         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtOptions.Key)),
-        ClockSkew = TimeSpan.Zero
+        ClockSkew = TimeSpan.Zero,
+        RoleClaimType = ClaimTypes.Role
     };
 });
 
