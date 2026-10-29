@@ -1,5 +1,6 @@
 ﻿using JwtProject.API.DTOs.RoleDtos;
 using JwtProject.API.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +10,7 @@ namespace JwtProject.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class RolesController(RoleManager<AppRole> _roleManager,
                                  UserManager<AppUser> _userManager) : ControllerBase
     {

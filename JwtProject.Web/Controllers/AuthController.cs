@@ -21,7 +21,7 @@ namespace JwtProject.Web.Controllers
                 return View(loginUserDto);
             }
 
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Category");
         }
     }
 }
