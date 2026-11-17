@@ -38,7 +38,7 @@ namespace JwtProject.API.Controllers
 
             return Ok("Kullanıcı Kaydı Başarılı Oldu");
 
-            
+
         }
 
         [HttpPost("login")]
@@ -46,11 +46,11 @@ namespace JwtProject.API.Controllers
         {
             var user = await _userManager.FindByEmailAsync(model.UserNameOrEmail);
 
-            if(user is null)
+            if (user is null)
             {
                 user = await _userManager.FindByNameAsync(model.UserNameOrEmail);
 
-                if(user is null)
+                if (user is null)
                 {
                     return BadRequest("Böyle bir kullanıcı bulunamadı.");
                 }
@@ -65,15 +65,18 @@ namespace JwtProject.API.Controllers
 
             var token = await _jwtService.GenerateTokenAsync(user);
 
-            return Ok(new {Token=token, 
-                ExpireTime=DateTime.Now.AddMinutes(_jwtOptions.ExpireInMinutes)});
+            return Ok(new
+            {
+                Token = token,
+                ExpireTime = DateTime.Now.AddMinutes(_jwtOptions.ExpireInMinutes)
+            });
 
 
 
         }
 
 
-        
+
 
 
 
